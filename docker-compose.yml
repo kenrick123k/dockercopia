@@ -1,0 +1,37 @@
+services:
+  miapp1:
+    container_name: miapp1
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - redMain
+
+  miapp2:
+    container_name: miapp2
+    build: .
+    ports:
+      - "3001:3000"
+    networks:
+      - redMain
+
+  monguitoc:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ken
+      - MONGO_INITDB_ROOT_PASSWORD=holaken
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - redMain
+  
+
+volumes:
+  mongo-data:
+
+networks:
+  redMain:
+    driver: bridge
+  
