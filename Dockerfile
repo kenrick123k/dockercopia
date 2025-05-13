@@ -1,8 +1,11 @@
 FROM node:18
 
-RUN mkdir -p /home/app
+WORKDIR /app
 
-COPY . /home/app
+COPY . .
+
+RUN npm install express
+RUN npm install mongoose
 
 EXPOSE 3000
 
